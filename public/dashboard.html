@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gestión de Telas</title>
+  <style>
+    body { font-family: Arial, sans-serif; background: #f4f4f9; margin: 0; padding: 20px; }
+    .container { max-width: 900px; margin: auto; background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+    .header-actions { display: flex; justify-content: space-between; margin-bottom: 20px; }
+    input, select, button { padding: 10px; margin: 5px 0; border: 1px solid #ccc; border-radius: 4px; }
+    button { background: #007bff; color: white; border: none; cursor: pointer; }
+    button:hover { background: #0056b3; }
+    .btn-danger { background: #dc3545; }
+    table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+    th, td { padding: 12px; text-align: left; border-bottom: 1px solid #ddd; }
+    th { background-color: #f8f9fa; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Gestión de Telas</h2>
+    
+    <div class="header-actions">
+      <form id="form-tela" style="display: flex; gap: 10px; flex-wrap: wrap;">
+        <input type="text" id="nombre" placeholder="Nombre" required>
+        <input type="number" id="metros" placeholder="Metros" required>
+        <input type="text" id="color" placeholder="Color" required>
+        <select id="calidad" required>
+          <option value="1era">1era</option>
+          <option value="2da">2da</option>
+          <option value="3era">3era</option>
+        </select>
+        <button type="submit">Registrar Tela</button>
+      </form>
+    </div>
+
+    <div class="header-actions">
+      <div>
+        <input type="text" id="search" placeholder="Buscar por nombre o ID...">
+        <button onclick="buscarTelas()">Buscar</button>
+        <button onclick="cargarTelas()">Limpiar</button>
+      </div>
+      <button onclick="descargarPDF()" style="background: #28a745;">Generar PDF</button>
+    </div>
+
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Nombre</th>
+          <th>Color</th>
+          <th>Metros</th>
+          <th>Calidad</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody id="tabla-telas">
+        <!-- Los datos se inyectarán aquí -->
+      </tbody>
+    </table>
+  </div>
+  <script src="dashboard.js"></script>
+</body>
+</html>
