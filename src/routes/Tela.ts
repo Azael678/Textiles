@@ -5,14 +5,6 @@ import PDFDocument from 'pdfkit';
 
 export const telasRouter = Router();
 
-telasRouter.post('/', async (req: Request, res: Response) => {
-    try {
-        const nuevaTela = new Tela(req.body);
-        await nuevaTela.save();
-        res.status(201).json(nuevaTela);
-    } catch (error) { res.status(400).json({ error: 'Error al crear' }); }
-});
-
 telasRouter.get('/', async (req: Request, res: Response) => {
     res.json(await Tela.find());
 });
@@ -32,14 +24,12 @@ telasRouter.get('/buscar/:nombre', async (req: Request, res: Response) => {
 
 telasRouter.put('/:id', async (req: Request, res: Response) => {
     try {
-        // Tipamos el filtro para actualizar por `id_tela`
         const tela = await Tela.findOneAndUpdate({ id_tela: req.params.id } as QueryFilter<ITela>, req.body, { new: true });
         tela ? res.json(tela) : res.status(404).json({ error: 'No encontrada' });
     } catch (error) { res.status(400).json({ error: 'Error al actualizar' }); }
 });
 
 telasRouter.delete('/:id', async (req: Request, res: Response) => {
-    // Tipamos el filtro de eliminación para `id_tela`
     const tela = await Tela.findOneAndDelete({ id_tela: req.params.id } as QueryFilter<ITela>);
     tela ? res.json({ mensaje: 'Eliminada' }) : res.status(404).json({ error: 'No encontrada' });
 });
